@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: Gooper;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/gooper-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Gooper;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/gooper-semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Fellix;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/fellix-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Fellix;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/fellix-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Fellix;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/fellix-semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Fellix;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/fellix-bold.woff2") format("woff2");
+}
+
+:root {
+  --ink: #000000;
+  /* ~5.7:1 on white; used for secondary body copy */
+  --ink-soft: #595959;
+  --paper: #ffffff;
+  /* Brand accent (decorative / large UI only) */
+  --pink: #ff147d;
+  /* Text + filled controls: >=4.5:1 with white */
+  --pink-text: #c40f62;
+  --pink-button: #c40f62;
+  --pink-button-hover: #9a0b4d;
+  --pink-soft: #fff1f8;
+  --pink-mid: #ffe8f2;
+  --mint: #e9ffec;
+  /* >=4.5:1 on mint */
+  --mint-deep: #276030;
+  --warm: #f7f3ef;
+  --bubble: #ffffff;
+  --error: #9a0b4d;
+  --focus: #c40f62;
+  --sun: #fcdd72;
+  --cream: #fff1f8;
+  --font-display: Gooper, Cambria, "Times New Roman", Times, serif;
+  --font-body: Fellix, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-pink: var(--pink);
+  --color-pink-text: var(--pink-text);
+  --color-pink-button: var(--pink-button);
+  --color-pink-soft: var(--pink-soft);
+  --color-mint: var(--mint);
+  --color-mint-deep: var(--mint-deep);
+  --color-sun: var(--sun);
+  --color-cream: var(--cream);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background:
+    radial-gradient(ellipse 90% 55% at 100% 0%, rgba(255, 20, 125, 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 0% 15%, rgba(233, 255, 236, 0.9), transparent 50%),
+    linear-gradient(180deg, #fff1f8 0%, #ffffff 42%, #e9ffec 100%);
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.msg-enter {
+  animation: fade-up 0.28s ease-out both;
+}
+
+.typing-dot {
+  animation: pulse-dot 1.1s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  border-radius: 999px;
+  background: var(--pink-button);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: translateY(0.75rem);
+  outline: 3px solid #000;
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msg-enter,
+  .typing-dot,
+  .chip {
+    animation: none !important;
+    transition: none !important;
+  }
+}
